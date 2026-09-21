@@ -25,5 +25,13 @@ public class Main {
             System.out.println("\nStudent found:");
             System.out.println(student);
         }
+	while (true) {
+    try {
+        Thread.sleep(10000);
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        break;
+    }
+}
     }
 }
