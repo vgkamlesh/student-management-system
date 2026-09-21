@@ -5,7 +5,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentManagerTest {
+@Test
+void testStudentCount() {
+    StudentManager manager = new StudentManager();
 
+    manager.addStudent(new Student(1, "Kamal", "Computer Science"));
+    manager.addStudent(new Student(2, "Rahul", "Information Technology"));
+
+    assertEquals(2, manager.getStudentCount());
+}
     @Test
     void testAddStudent() {
         StudentManager manager = new StudentManager();

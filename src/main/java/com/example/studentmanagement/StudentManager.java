@@ -23,4 +23,7 @@ public class StudentManager {
 
         return null;
     }
+    public int getStudentCount() {
+    return students.size();
+}
 }
