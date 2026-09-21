@@ -1,0 +1,30 @@
+- name: Deploy Student Management System
+  hosts: managed
+  become: false
+
+  tasks:
+    - name: Create application directory
+      file:
+        path: /home/vgkam/student-management-system-app
+        state: directory
+        mode: '0755'
+
+    - name: Copy application JAR
+      copy:
+        src: ../target/student-management-system-1.0-SNAPSHOT.jar
+        dest: /home/vgkam/student-management-system-app/student-management-system.jar
+        mode: '0755'
+
+    - name: Stop old application
+      shell: pkill -f '^java -jar .*student-management-system.jar' || true
+
+    - name: Start application
+      shell: nohup java -jar /home/vgkam/student-management-system-app/student-management-system.jar > /home/vgkam/student-management-system-app/app.log 2>&1 &
+
+    - name: Verify application process
+      shell: pgrep -f 'student-management-system.jar'
+      register: app_process
+
+    - name: Display process ID
+      debug:
+        var: app_process.stdout

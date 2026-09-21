@@ -1,0 +1,2 @@
+[managed]
+node1 ansible_host=172.23.248.152 ansible_user=vgkam
